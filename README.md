@@ -1,1 +1,1 @@
-Simple `Tinder like App for Jobs Search`. Built with `React Native`.
+Simple `Tinder like app for Jobs Search`. Built with `React Native`.
