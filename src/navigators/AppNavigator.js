@@ -10,11 +10,14 @@ const AppNavigator = TabNavigator({
     screen: StackNavigator({
       Review: { screen: ReviewScreen },
       Settings: { screen: SettingsScreen },
+    }, {
+      navigationOptions: {
+        headerTintColor: '#45B39D',
+      }
     })
   },
 }, {
-  // initialRouteName: 'Map',
-  // backBehavior: 'none',
+  backBehavior: 'none',
   tabBarPosition: 'bottom',
   tabBarOptions: {
     tabBarVisible: true,

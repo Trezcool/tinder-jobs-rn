@@ -23,7 +23,7 @@ class MapScreen extends Component {
     }
   };
 
-  onRegionChangeComplete = (region) => {
+  onRegionChangeComplete = region => {
     this.setState({ region });
   };
 

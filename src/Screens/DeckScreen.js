@@ -4,7 +4,7 @@ import { MapView } from 'expo';
 import { Button, Card, Icon } from 'react-native-elements';
 
 import Swipe from '../components/Swipe';
-import jobs from './jobs.json'
+import jobs from './jobs.json';
 
 class DeckScreen extends Component {
   static navigationOptions = {
@@ -34,8 +34,8 @@ class DeckScreen extends Component {
           />
         </View>
         <View style={styles.detailWrapper}>
-          <Text>{job.company}</Text>
-          <Text>{job.formattedRelativeTime}</Text>
+          <Text style={styles.italics}>{job.company}</Text>
+          <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
         </View>
         <Text>
           {job.snippet.replace(/<b>/g, '').replace(/<\/b/g, '')}
@@ -79,13 +79,15 @@ class DeckScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     marginTop: 10
   },
   detailWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 10
+  },
+  italics: {
+    fontStyle: 'italic'
   }
 });
 
