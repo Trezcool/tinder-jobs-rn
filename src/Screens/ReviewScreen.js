@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Linking, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
@@ -23,7 +23,7 @@ class ReviewScreen extends Component {
   });
 
   renderLikedJob({ item }) {
-    const { company, formattedRelativeTime, url, longitude, latitude, jobtitle } = item;
+    const { company, formattedRelativeTime, url, longitude, latitude, jobtitle, jobkey } = item;
 
     const initialRegion = {
       longitude,
@@ -33,7 +33,7 @@ class ReviewScreen extends Component {
     };
 
     return (
-      <Card title={jobtitle}>
+      <Card title={jobtitle} key={jobkey}>
         <View style={{ height: 200 }}>
           <MapView
             provider="google"
@@ -58,15 +58,18 @@ class ReviewScreen extends Component {
     );
   }
 
+  renderLikedJobs() {
+    return jobs.map(item => this.renderLikedJob({ item }))
+  }
+
   render() {
+    // FIXME: FlatList only loads upon interaction.. and also isn't animatable.. :(
     return (
       <Animatable.View animation="slideInUp" style={styles.container}>
-        <FlatList
-          data={jobs}
-          keyExtractor={job => job.jobkey}
-          renderItem={this.renderLikedJob}
-        />
-      </Animatable.View>
+        <ScrollView>
+          {this.renderLikedJobs()}
+        </ScrollView>
+     </Animatable.View>
     );
   }
 }
