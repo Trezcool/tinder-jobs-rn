@@ -1,0 +1,92 @@
+[
+  {
+    "jobkey": "1",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 1",
+    "company": "Company 1",
+    "formattedRelativeTime": "01/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "2",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 2",
+    "company": "Company 2",
+    "formattedRelativeTime": "02/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "3",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 3",
+    "company": "Company 3",
+    "formattedRelativeTime": "03/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "4",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 4",
+    "company": "Company 4",
+    "formattedRelativeTime": "04/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "5",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 5",
+    "company": "Company 5",
+    "formattedRelativeTime": "05/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "6",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 6",
+    "company": "Company 6",
+    "formattedRelativeTime": "06/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "7",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 7",
+    "company": "Company 7",
+    "formattedRelativeTime": "07/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "8",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 8",
+    "company": "Company 8",
+    "formattedRelativeTime": "08/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "9",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 9",
+    "company": "Company 9",
+    "formattedRelativeTime": "09/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  {
+    "jobkey": "10",
+    "longitude": -122,
+    "latitude": 37,
+    "jobtitle": "Job 10",
+    "company": "Company 10",
+    "formattedRelativeTime": "10/06/2017",
+    "snippet": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  }
+]

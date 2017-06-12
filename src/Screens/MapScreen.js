@@ -30,7 +30,7 @@ class MapScreen extends Component {
   onButtonPress = () => {
     // fetch jobs
     const { navigation } = this.props;
-    navigation.navigate('Deck');
+    navigation.navigate('Deck', {reload: true});
   };
 
   render() {

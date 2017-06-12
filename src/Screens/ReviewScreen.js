@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import { Link } from '../components/common';
 
 class ReviewScreen extends Component {
   static navigationOptions = {
     title: 'Review',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="favorite" size={30} color={tintColor} />
+    )
   };
 
   render() {
