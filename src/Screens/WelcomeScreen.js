@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import AppIntro from 'react-native-app-intro';
 
 const SLIDE_DATA = [{
-  title: 'Welcome',
-  description: 'Welcome to TinderJob',
+  title: 'Welcome!',
+  description: 'JobCool, the app you need',
   img: require('../../src/assets/img/slide1.png'),
   imgStyle: {
     height: 150,

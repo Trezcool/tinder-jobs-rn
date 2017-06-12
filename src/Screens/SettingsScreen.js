@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { View } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 
 class SettingsScreen extends Component {
   static navigationOptions = {
     headerTitle: 'Settings',
-    tabBarTitle: 'Review',
+    tabBarTitle: 'Favorites',
     tabBarIcon: ({ tintColor }) => (
       <Icon name="favorite" size={30} color={tintColor} />
     )
@@ -13,17 +13,18 @@ class SettingsScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Settings</Text>
+      <View style={{backgroundColor: 'transparent'}}>
+        <Button
+          raised
+          title="Reset Liked Jobs"
+          backgroundColor="#F44336"
+          icon={{name: 'delete-forever'}}
+          onPress={() => {}}
+          buttonStyle={{borderRadius: 5, height: 50}}
+        />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export { SettingsScreen };

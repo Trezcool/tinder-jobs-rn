@@ -6,7 +6,7 @@ import { DeckScreen, MapScreen, ReviewScreen, SettingsScreen } from '../Screens'
 const AppNavigator = TabNavigator({
   Map: { screen: MapScreen },
   Deck: { screen: DeckScreen },
-  Review: {
+  Favorites: {
     screen: StackNavigator({
       Review: { screen: ReviewScreen },
       Settings: { screen: SettingsScreen },

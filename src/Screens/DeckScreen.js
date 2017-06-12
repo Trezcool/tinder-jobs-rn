@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {  StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
+import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
 
 import Swipe from '../components/Swipe';
@@ -23,7 +24,7 @@ class DeckScreen extends Component {
     };
 
     return (
-      <Card title={job.jobtitle}>
+      <Card title={job.jobtitle} containerStyle={{shadowColor: 'rgba(69, 179, 157, 0.3)'}} dividerStyle={{backgroundColor: 'rgba(69, 179, 157, 0.3)'}}>
         <View style={{ height: 300 }}>
           <MapView
             provider="google"
@@ -63,7 +64,7 @@ class DeckScreen extends Component {
     console.log(this.props.navigation.state);
     const { navigation: { state: { params } } } = this.props;
     return (
-      <View style={styles.container}>
+      <Animatable.View animation="fadeInDown" style={styles.container}>
         <Swipe
           data={jobs}
           renderCard={this.renderCard}
@@ -72,7 +73,7 @@ class DeckScreen extends Component {
           keyProp="jobkey"
           reset={params && params.reload || false}
         />
-      </View>
+      </Animatable.View>
     );
   }
 }
