@@ -66,14 +66,16 @@ class DeckScreen extends Component {
   };
 
   render() {
+    const { jobs, likeJob } = this.props;
+
     return (
       <View style={styles.container}>
         <Animatable.View animation="fadeInDown" style={styles.view}>
           <Swipe
-            data={this.props.jobs}
+            data={jobs}
             renderCard={this.renderCard}
             renderNoMoreCards={this.renderNoMoreCards}
-            onSwipeRight={job => {}}  // like job
+            onSwipeRight={job => likeJob(job)}
             keyProp="jobkey"
           />
         </Animatable.View>

@@ -3,8 +3,7 @@ import { FlatList, Linking, ScrollView, StyleSheet, Text, View } from 'react-nat
 import { MapView } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
-
-import jobs from './jobs.json';
+import { connect } from 'react-redux';
 
 class ReviewScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -58,8 +57,25 @@ class ReviewScreen extends Component {
     );
   }
 
+  renderNoLikedJobs() {
+    return (
+      <Card title="No Liked Jobs">
+        <Button
+          raised
+          title="Back To Map"
+          backgroundColor="#009688"
+          icon={{ name: 'my-location' }}
+          onPress={() => this.props.navigation.navigate('Map')}
+          buttonStyle={{borderRadius: 5, height: 50}}
+        />
+      </Card>
+    );
+  }
+
   renderLikedJobs() {
-    return jobs.map(item => this.renderLikedJob({ item }))
+    const { jobs } = this.props;
+
+    return jobs.length ? jobs.map(item => this.renderLikedJob({ item })) : this.renderNoLikedJobs();
   }
 
   render() {
@@ -89,4 +105,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ReviewScreen;
+const mapStateToProps = ({ likedJobs }) => {
+  return { jobs: likedJobs }
+};
+
+export default connect(mapStateToProps)(ReviewScreen);

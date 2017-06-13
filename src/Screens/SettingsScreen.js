@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 
 class SettingsScreen extends Component {
   static navigationOptions = {
@@ -11,6 +14,12 @@ class SettingsScreen extends Component {
     )
   };
 
+  onButtonPress = () => {
+    const { navigation, clearJobs } = this.props;
+    clearJobs();
+    navigation.goBack(null);
+  };
+
   render() {
     return (
       <View style={{backgroundColor: 'transparent'}}>
@@ -19,7 +28,7 @@ class SettingsScreen extends Component {
           title="Reset Liked Jobs"
           backgroundColor="#F44336"
           icon={{name: 'delete-forever'}}
-          onPress={() => {}}
+          onPress={this.onButtonPress}
           buttonStyle={{borderRadius: 5, height: 50}}
         />
       </View>
@@ -27,4 +36,4 @@ class SettingsScreen extends Component {
   }
 }
 
-export default SettingsScreen;
+export default connect(null, actions)(SettingsScreen);
