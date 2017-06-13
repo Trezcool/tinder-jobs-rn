@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -22,7 +22,7 @@ class SettingsScreen extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: 'transparent'}}>
+      <View style={styles.container}>
         <Button
           raised
           title="Reset Liked Jobs"
@@ -35,5 +35,13 @@ class SettingsScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    paddingTop: 30,
+  }
+});
 
 export default connect(null, actions)(SettingsScreen);

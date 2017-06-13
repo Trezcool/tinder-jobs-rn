@@ -2,10 +2,8 @@ import Expo from 'expo';
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 
-import reducers from './src/reducers';
+import store from './src/store';
 import AppNavigator from './src/navigators/AppNavigator';
 import { Spinner } from './src/components/common';
 import { cacheImages } from './src/utils';
@@ -16,11 +14,9 @@ export default class App extends Component {
   state = {
     token: false,
     appIsReady: false,
-    store: null,
   };
 
   componentWillMount() {
-    this.setState({store: createStore(reducers, applyMiddleware(thunk))});
     //noinspection JSIgnoredPromiseFromCall
     this._loadAssetsAsync();
   }
@@ -53,7 +49,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={this.state.store}>
+      <Provider store={store}>
         {this.renderView()}
       </Provider>
     );
