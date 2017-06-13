@@ -9,7 +9,7 @@ const SLIDE_DATA = [{
     height: 150,
     width: 150,
   },
-  backgroundColor: '#fa931d',
+  backgroundColor: '#03A9F4',
   fontColor: '#fff',
   level: 10,
 }, {
@@ -20,7 +20,7 @@ const SLIDE_DATA = [{
     height: 150,
     width: 150,
   },
-  backgroundColor: '#03A9F4',
+  backgroundColor: '#BB8FCE',
   fontColor: '#fff',
   level: 10,
 }, {

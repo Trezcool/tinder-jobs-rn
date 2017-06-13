@@ -24,7 +24,6 @@ export default class App extends Component {
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
       require('./src/assets/icons/app.png'),
-      require('./src/assets/icons/loading.png'),
       require('./src/assets/img/slide1.png'),
       require('./src/assets/img/slide2.png'),
       require('./src/assets/img/slide3.png'),
