@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { MapView } from 'expo';
+import { Location, MapView, Permissions } from 'expo';
 import { Button, FormInput, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -27,6 +27,26 @@ class MapScreen extends Component {
       latitudeDelta: 0.09
     },
     term: '',
+  };
+
+  async componentWillMount() {
+    const { latitude, longitude } = this.getCurrentLocation();
+
+    if (latitude && longitude) {
+      this.setState({latitude, longitude})
+    }
+  }
+
+  getCurrentLocation = async () => {
+    // ask for permission first
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status === 'granted') {
+      // get location
+      const { coords } = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
+      return coords;
+    } else {
+      console.log('Location permission denied!');
+    }
   };
 
   onRegionChangeComplete = region => {
