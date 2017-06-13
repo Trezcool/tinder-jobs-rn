@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FlatList, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { MapView } from 'expo';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { MapView, WebBrowser } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -49,7 +49,7 @@ class ReviewScreen extends Component {
             raised
             title="Apply Now!"
             backgroundColor="#009688"
-            onPress={() => Linking.openURL(url)}
+            onPress={async () => await WebBrowser.openBrowserAsync(url)}
             buttonStyle={{borderRadius: 5}}
           />
         </View>
