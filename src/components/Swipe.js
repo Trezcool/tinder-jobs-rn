@@ -38,7 +38,7 @@ export default class Swipe extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data || this.props.reset) {
+    if (nextProps.data !== this.props.data) {
       this.setState({ index: 0 });
     }
   }
@@ -85,8 +85,8 @@ export default class Swipe extends Component {
   }
 
   renderCards() {
-    const { index } = this.state;
-    const { data, renderCard, renderNoMoreCards } = this.props;
+    const { index, panResponder } = this.state;
+    const { data, keyProp, renderCard, renderNoMoreCards } = this.props;
 
     if (index >= data.length) return renderNoMoreCards();
 
@@ -96,9 +96,9 @@ export default class Swipe extends Component {
       if (i === index) {
         return (
           <Animated.View
-            key={item[this.props.keyProp]}
+            key={item[keyProp]}
             style={[this.getCardStyle(), styles.card, { zIndex: 99 }]}
-            {...this.state.panResponder.panHandlers}
+            {...panResponder.panHandlers}
           >
             {renderCard(item)}
           </Animated.View>
@@ -107,7 +107,7 @@ export default class Swipe extends Component {
 
       return (
         <Animated.View
-          key={item[this.props.keyProp]}
+          key={item[keyProp]}
           style={[styles.card, { top: 10 * (i - index), zIndex: -i }]}
         >
           {renderCard(item)}
@@ -115,7 +115,7 @@ export default class Swipe extends Component {
       );
     });
     // return Platform.OS === 'android' ? deck : deck.reverse();
-    return deck;
+    return deck.reverse();
   }
 
   render() {

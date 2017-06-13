@@ -3,9 +3,10 @@ import {  StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import Swipe from '../components/Swipe';
-import jobs from './jobs.json';
 
 class DeckScreen extends Component {
   static navigationOptions = {
@@ -24,7 +25,11 @@ class DeckScreen extends Component {
     };
 
     return (
-      <Card title={job.jobtitle} containerStyle={{shadowColor: 'rgba(69, 179, 157, 0.3)'}} dividerStyle={{backgroundColor: 'rgba(69, 179, 157, 0.3)'}}>
+      <Card
+        title={job.jobtitle}
+        containerStyle={{shadowColor: 'rgba(69, 179, 157, 0.3)'}}
+        dividerStyle={{backgroundColor: 'rgba(69, 179, 157, 0.3)'}}
+      >
         <View style={{ height: 300 }}>
           <MapView
             provider="google"
@@ -38,7 +43,7 @@ class DeckScreen extends Component {
           <Text style={styles.italics}>{job.company}</Text>
           <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
         </View>
-        <Text>
+        <Text style={styles.snippet}>
           {job.snippet.replace(/<b>/g, '').replace(/<\/b/g, '')}
         </Text>
       </Card>
@@ -61,25 +66,28 @@ class DeckScreen extends Component {
   };
 
   render() {
-    console.log(this.props.navigation.state);
-    const { navigation: { state: { params } } } = this.props;
     return (
-      <Animatable.View animation="fadeInDown" style={styles.container}>
-        <Swipe
-          data={jobs}
-          renderCard={this.renderCard}
-          renderNoMoreCards={this.renderNoMoreCards}
-          onSwipeRight={job => {}}  // like job
-          keyProp="jobkey"
-          reset={params && params.reload || false}
-        />
-      </Animatable.View>
+      <View style={styles.container}>
+        <Animatable.View animation="fadeInDown" style={styles.view}>
+          <Swipe
+            data={this.props.jobs}
+            renderCard={this.renderCard}
+            renderNoMoreCards={this.renderNoMoreCards}
+            onSwipeRight={job => {}}  // like job
+            keyProp="jobkey"
+          />
+        </Animatable.View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#E9E9EF',
+  },
+  view: {
     marginTop: 10
   },
   detailWrapper: {
@@ -88,8 +96,15 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   italics: {
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    color: '#ABB2B9',
+  },
+  snippet: {
   }
 });
 
-export { DeckScreen };
+const mapStateToProps = ({ jobs }) => {
+  return { jobs: jobs.results }
+};
+
+export default connect(mapStateToProps, actions)(DeckScreen);

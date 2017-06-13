@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { ReviewScreen };
+export default ReviewScreen;

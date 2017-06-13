@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { MapView } from 'expo';
 import { Button, FormInput, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import { Spinner } from '../components/common';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -17,9 +19,10 @@ class MapScreen extends Component {
 
   state = {
     mapLoaded: true,
+    loading: false,
     region: {
-      longitude: -122,
-      latitude: 37,
+      longitude: 18.506891,
+      latitude: -33.813459,
       longitudeDelta: 0.04,
       latitudeDelta: 0.09
     },
@@ -32,29 +35,39 @@ class MapScreen extends Component {
 
   onButtonPress = () => {
     // fetch jobs
-    const { navigation } = this.props;
-    navigation.navigate('Deck', {reload: true});
+    const { navigation, nextPage, q, searchJobs } = this.props;
+    const { term, region } = this.state;
+    const page = term === q ? nextPage : 0;  // reset page if term changes
+    this.setState({ loading: true });
+    searchJobs(term, region, page, () => {
+      this.setState({ loading: false });
+      navigation.navigate('Deck');
+    });
   };
 
-  render() {
-    if (!this.state.mapLoaded) return <Spinner color="#45B39D" />;
+  renderView() {
+    const { mapLoaded, loading, region, term } = this.state;
+
+    if (!mapLoaded || loading) return <Spinner color="#45B39D" />;
 
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1}}>
         <MapView
           provider="google"
-          region={this.state.region}
+          region={region}
           style={{ flex: 1 }}
           onRegionChangeComplete={this.onRegionChangeComplete}
         />
 
         <FormInput
-          placeholder="Enter search term"
-          value={this.state.term}
+          placeholder="Enter Search Term"
+          value={term}
           autoCapitalize="none"
           clearButtonMode="while-editing"
           onChangeText={term => this.setState({ term })}
+          // onSubmitEditing={this.onButtonPress}
           containerStyle={styles.inputContainer}
+          inputStyle={styles.input}
         />
 
         <View style={styles.buttonContainer}>
@@ -70,11 +83,20 @@ class MapScreen extends Component {
       </View>
     );
   }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {this.renderView()}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#E9E9EF',
   },
   inputContainer: {
     position: 'absolute',
@@ -83,11 +105,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     shadowColor: '#009688',
-    shadowOffset: {width: 5, height: 5},
-    shadowOpacity: 0.2,
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.3,
     borderWidth: 0,
     borderColor: 'transparent',
-    elevation: 2,
+    elevation: 5,
     backgroundColor: 'white',
     ...Platform.select({
       ios: {
@@ -96,11 +118,18 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  input: {
+    paddingRight: 5,
+    paddingLeft: 5,
+  },
   button: {
     borderRadius: 30,
     height: 60,
     width: 60,
-    paddingLeft: 18,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingRight: 0,
+    paddingLeft: 15,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -121,4 +150,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export { MapScreen };
+const mapStateToProps = ({ jobs }) => {
+  const { nextPage, q } = jobs;
+  return { nextPage, q }
+};
+
+export default connect(mapStateToProps, actions)(MapScreen);

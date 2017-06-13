@@ -2,7 +2,10 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
-import { DeckScreen, MapScreen, ReviewScreen, SettingsScreen } from '../Screens';
+import DeckScreen from '../Screens/DeckScreen';
+import MapScreen from '../Screens/MapScreen';
+import ReviewScreen from '../Screens/ReviewScreen';
+import SettingsScreen from '../Screens/SettingsScreen';
 
 const styles = StyleSheet.create({
   header: {

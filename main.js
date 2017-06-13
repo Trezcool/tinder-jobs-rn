@@ -1,6 +1,6 @@
 import Expo from 'expo';
 import React, { Component } from 'react';
-import { AsyncStorage, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -16,9 +16,11 @@ export default class App extends Component {
   state = {
     token: false,
     appIsReady: false,
+    store: null,
   };
 
   componentWillMount() {
+    this.setState({store: createStore(reducers, applyMiddleware(thunk))});
     //noinspection JSIgnoredPromiseFromCall
     this._loadAssetsAsync();
   }
@@ -27,7 +29,6 @@ export default class App extends Component {
     const imageAssets = cacheImages([
       require('./src/assets/icons/app.png'),
       require('./src/assets/icons/loading.png'),
-      require('./src/assets/img/background.jpg'),
       require('./src/assets/img/slide1.png'),
       require('./src/assets/img/slide2.png'),
       require('./src/assets/img/slide3.png'),
@@ -51,12 +52,11 @@ export default class App extends Component {
   };
 
   render() {
-    return this.renderView();
-    // return (
-    //   <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-    //     {this.renderView()}
-    //   </Provider>
-    // );
+    return (
+      <Provider store={this.state.store}>
+        {this.renderView()}
+      </Provider>
+    );
   }
 }
 
