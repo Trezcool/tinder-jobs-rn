@@ -76,6 +76,8 @@ class MapScreen extends Component {
           provider="google"
           region={region}
           showsUserLocation
+          followsUserLocation
+          showsMyLocationButton
           style={{ flex: 1 }}
           onRegionChangeComplete={this.onRegionChangeComplete}
         />
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 9,
     left: SCREEN_WIDTH/2 - 45,
     right: 0,
     shadowColor: 'black',
