@@ -23,31 +23,31 @@ class MapScreen extends Component {
     region: {
       longitude: 18.506891,
       latitude: -33.813459,
-      longitudeDelta: 0.04,
-      latitudeDelta: 0.09
+      longitudeDelta: 0.006,
+      latitudeDelta: 0.02,
     },
     term: '',
   };
 
-  async componentWillMount() {
-    const { latitude, longitude } = this.getCurrentLocation();
-
-    if (latitude && longitude) {
-      this.setState({latitude, longitude})
-    }
+  componentDidMount() {
+    this.setRegionToCurrentLocation();
   }
 
-  getCurrentLocation = async () => {
+  async setRegionToCurrentLocation() {
     // ask for permission first
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status === 'granted') {
       // get location
-      const { coords } = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
-      return coords;
+      const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
+      // update region
+      if (latitude && longitude) {
+        const { region } = this.state;
+        this.setState({region: { ...region, latitude, longitude }});
+      }
     } else {
       console.log('Location permission denied!');
     }
-  };
+  }
 
   onRegionChangeComplete = region => {
     this.setState({ region });
@@ -75,6 +75,7 @@ class MapScreen extends Component {
         <MapView
           provider="google"
           region={region}
+          showsUserLocation
           style={{ flex: 1 }}
           onRegionChangeComplete={this.onRegionChangeComplete}
         />
