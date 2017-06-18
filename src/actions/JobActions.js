@@ -36,3 +36,5 @@ export const searchJobs = (q, region, page = 0, callBack) => async dispatch => {
 export const likeJob = payload => ({ type: types.LIKE_JOB, payload });
 
 export const clearJobs = () => ({ type: types.CLEAR_JOBS });
+
+export const deleteJob = jobkey => ({ type: types.DELETE_JOB, payload: jobkey });

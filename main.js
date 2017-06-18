@@ -16,7 +16,7 @@ export default class App extends Component {
     appIsReady: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     //noinspection JSIgnoredPromiseFromCall
     this._loadAssetsAsync();
   }

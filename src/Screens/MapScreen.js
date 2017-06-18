@@ -49,10 +49,6 @@ class MapScreen extends Component {
     }
   }
 
-  onRegionChangeComplete = region => {
-    this.setState({ region });
-  };
-
   onButtonPress = () => {
     // fetch jobs
     const { navigation, nextPage, q, searchJobs } = this.props;
@@ -79,7 +75,7 @@ class MapScreen extends Component {
           followsUserLocation
           showsMyLocationButton
           style={{ flex: 1 }}
-          onRegionChangeComplete={this.onRegionChangeComplete}
+          onRegionChangeComplete={region => this.setState({ region })}
         />
 
         <FormInput

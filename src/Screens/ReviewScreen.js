@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView, WebBrowser } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+
+import { deleteJob } from '../actions';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class ReviewScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -32,28 +36,37 @@ class ReviewScreen extends Component {
     };
 
     return (
-      <Card title={jobtitle} key={jobkey}>
-        <View style={{ height: 200 }}>
-          <MapView
-            provider="google"
-            initialRegion={initialRegion}
-            style={{ flex: 1 }}
-            scrollEnabled={false}
-            cacheEnabled
-          />
-          <View style={styles.detailWrapper}>
-            <Text style={styles.italics}>{company}</Text>
-            <Text style={styles.italics}>{formattedRelativeTime}</Text>
+      <View key={jobkey}>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={() => this.props.deleteJob(jobkey)}
+        >
+          <Icon name="delete-forever" size={30} color="#F44336" />
+        </TouchableOpacity>
+
+        <Card title={jobtitle}>
+          <View style={{ height: 200 }}>
+            <MapView
+              provider="google"
+              initialRegion={initialRegion}
+              style={{ flex: 1 }}
+              scrollEnabled={false}
+              cacheEnabled
+            />
+            <View style={styles.detailWrapper}>
+              <Text style={styles.italics}>{company}</Text>
+              <Text style={styles.italics}>{formattedRelativeTime}</Text>
+            </View>
+            <Button
+              raised
+              title="Apply Now!"
+              backgroundColor="#009688"
+              onPress={async () => await WebBrowser.openBrowserAsync(url)}
+              buttonStyle={{borderRadius: 5}}
+            />
           </View>
-          <Button
-            raised
-            title="Apply Now!"
-            backgroundColor="#009688"
-            onPress={async () => await WebBrowser.openBrowserAsync(url)}
-            buttonStyle={{borderRadius: 5}}
-          />
-        </View>
-      </Card>
+        </Card>
+      </View>
     );
   }
 
@@ -102,6 +115,13 @@ const styles = StyleSheet.create({
   },
   italics: {
     fontStyle: 'italic'
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 16,
+    left: SCREEN_WIDTH - 45,
+    zIndex: 900,
+    elevation: 5
   }
 });
 
@@ -109,4 +129,4 @@ const mapStateToProps = ({ likedJobs }) => {
   return { jobs: likedJobs }
 };
 
-export default connect(mapStateToProps)(ReviewScreen);
+export default connect(mapStateToProps, { deleteJob })(ReviewScreen);
