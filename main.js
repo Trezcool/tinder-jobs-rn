@@ -43,7 +43,7 @@ export default class App extends Component {
       <View style={styles.container}>
         {this.renderScreen()}
       </View>
-    ) : <Spinner color="#45B39D" />;
+    ) : <Spinner color="#00B5AD" />;
   };
 
   render() {

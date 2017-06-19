@@ -10,7 +10,7 @@ import SettingsScreen from '../Screens/SettingsScreen';
 const styles = StyleSheet.create({
   header: {
     borderBottomWidth: 2,
-    borderColor: '#45B39D',
+    borderColor: '#00B5AD',
     shadowColor: '#6fb3ac',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.4,
@@ -29,7 +29,7 @@ const AppNavigator = TabNavigator({
     }, {
       navigationOptions: {
         headerStyle: styles.header,
-        headerTintColor: '#45B39D',
+        headerTintColor: '#00B5AD',
       }
     })
   },
@@ -38,7 +38,7 @@ const AppNavigator = TabNavigator({
   tabBarPosition: 'bottom',
   tabBarOptions: {
     tabBarVisible: true,
-    activeTintColor: '#45B39D',
+    activeTintColor: '#00B5AD',
     labelStyle: { fontSize: 12 },
     showIcon: true,
   },

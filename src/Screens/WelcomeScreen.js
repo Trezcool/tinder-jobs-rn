@@ -31,7 +31,7 @@ const SLIDE_DATA = [{
     height: 150,
     width: 150,
   },
-  backgroundColor: '#a4b602',
+  backgroundColor: '#00B5AD',
   fontColor: '#fff',
   level: 10,
 }];

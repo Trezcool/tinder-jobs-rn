@@ -56,7 +56,7 @@ class DeckScreen extends Component {
         <Button
           raised
           title="Back To Map"
-          backgroundColor="#009688"
+          backgroundColor="#00B5AD"
           icon={{ name: 'my-location' }}
           onPress={() => this.props.navigation.navigate('Map')}
           buttonStyle={{borderRadius: 5, height: 50}}

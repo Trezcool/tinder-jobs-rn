@@ -18,7 +18,7 @@ class ReviewScreen extends Component {
     headerRight: (
       <Button
         title=""
-        icon={{ name: 'settings', color: '#45B39D', size: 24 }}
+        icon={{ name: 'settings', color: '#00B5AD', size: 24 }}
         onPress={() => navigation.navigate('Settings')}
         backgroundColor="transparent"
       />
@@ -60,7 +60,7 @@ class ReviewScreen extends Component {
             <Button
               raised
               title="Apply Now!"
-              backgroundColor="#009688"
+              backgroundColor="#00B5AD"
               onPress={async () => await WebBrowser.openBrowserAsync(url)}
               buttonStyle={{borderRadius: 5}}
             />
@@ -76,7 +76,7 @@ class ReviewScreen extends Component {
         <Button
           raised
           title="Back To Map"
-          backgroundColor="#009688"
+          backgroundColor="#00B5AD"
           icon={{ name: 'my-location' }}
           onPress={() => this.props.navigation.navigate('Map')}
           buttonStyle={{borderRadius: 5, height: 50}}

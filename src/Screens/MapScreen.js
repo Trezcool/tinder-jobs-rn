@@ -64,7 +64,7 @@ class MapScreen extends Component {
   renderView() {
     const { mapLoaded, loading, region, term } = this.state;
 
-    if (!mapLoaded || loading) return <Spinner color="#45B39D" />;
+    if (!mapLoaded || loading) return <Spinner color="#00B5AD" />;
 
     return (
       <View style={{flex: 1}}>
@@ -93,7 +93,7 @@ class MapScreen extends Component {
           <Button
             raised
             title=""
-            backgroundColor="#009688"
+            backgroundColor="#00B5AD"
             icon={{ name: 'search', size: 24 }}
             onPress={this.onButtonPress}
             buttonStyle={styles.button}
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     top: 50,
     left: 0,
     right: 0,
-    shadowColor: '#009688',
+    shadowColor: '#00B5AD',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.3,
     borderWidth: 0,
