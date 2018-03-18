@@ -1,38 +1,51 @@
 import React, { Component } from 'react';
-import AppIntro from 'react-native-app-intro';
+import AppIntroSlider from 'react-native-app-intro-slider';
+
+import slide1_png from '../../src/assets/img/slide1.png';
+import slide2_png from '../../src/assets/img/slide2.png';
+import slide3_png from '../../src/assets/img/slide3.png';
 
 const SLIDE_DATA = [{
+  key: 1,
   title: 'Welcome!',
-  description: 'JobCool, the app you need',
-  img: require('../../src/assets/img/slide1.png'),
-  imgStyle: {
+  text: 'JobCool, the app you need',
+  image: slide1_png,
+  imageStyle: {
     height: 150,
     width: 150,
+  },
+  textStyle: {
+    color: '#fff'
   },
   backgroundColor: '#03A9F4',
-  fontColor: '#fff',
   level: 10,
 }, {
+  key: 2,
   title: 'Find Job',
-  description: 'Use this to get a job',
-  img: require('../assets/img/slide2.png'),
-  imgStyle: {
+  text: 'Use this to get a job',
+  image: slide2_png,
+  imageStyle: {
     height: 150,
     width: 150,
   },
-  backgroundColor: '#BB8FCE',
-  fontColor: '#fff',
+  textStyle: {
+    color: '#fff'
+  },
+  backgroundColor: '#03A9F4',
   level: 10,
 }, {
+  key: 3,
   title: 'Enjoy',
-  description: 'Set your location, then swipe away',
-  img: require('../../src/assets/img/slide3.png'),
-  imgStyle: {
+  text: 'Set your location, then swipe away',
+  image: slide3_png,
+  imageStyle: {
     height: 150,
     width: 150,
   },
-  backgroundColor: '#00B5AD',
-  fontColor: '#fff',
+  textStyle: {
+    color: '#fff'
+  },
+  backgroundColor: '#03A9F4',
   level: 10,
 }];
 
@@ -45,9 +58,9 @@ class WelcomeScreen extends Component {
     const { onDone } = this.props;
 
     return (
-      <AppIntro
-        onDoneBtnClick={onDone}
-        pageArray={SLIDE_DATA}
+      <AppIntroSlider
+        slides={SLIDE_DATA}
+        onDone={onDone}
         showSkipButton={false}
         customStyles={{description: { fontSize: 18 }}}
       />
